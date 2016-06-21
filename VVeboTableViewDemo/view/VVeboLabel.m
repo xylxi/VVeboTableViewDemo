@@ -429,6 +429,16 @@ static inline NSRegularExpression * TopicRegularExpression() {
     highlightImageView.image = nil;
 }
 
+/**
+ *  判断这个View是不是触发这个事件
+ *  @param point point
+ *  @param event event
+ */
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    return [self touchPoint:point];
+}
+
+
 - (BOOL)touchPoint:(CGPoint)point{
     for (NSString *key in framesDict.allKeys) {
         CGRect frame = [[framesDict valueForKey:key] CGRectValue];
