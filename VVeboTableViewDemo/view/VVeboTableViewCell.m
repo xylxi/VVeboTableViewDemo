@@ -300,6 +300,19 @@
     [super removeFromSuperview];
 }
 
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    CGPoint btnp = [self convertPoint:point toView:label];
+    if ([label touchPoint:btnp]) {
+        return label;
+    }
+    btnp = [self convertPoint:point toView:detailLabel];
+    if ([detailLabel touchPoint:btnp]) {
+        return detailLabel;
+    }
+    // 自己作为处理的
+    return self;
+}
+
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"postview dealloc %@", self);
